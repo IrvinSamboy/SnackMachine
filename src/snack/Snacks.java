@@ -22,10 +22,11 @@ public class Snacks {
     }
 
     public static void showSnacks() {
-        String snacksInventory = "";
+        StringBuilder snacksInventory = new StringBuilder();
 
         for(Snack snack : snacks) {
-            snacksInventory += snack.toString() + "\n";
+            snacksInventory.append(snack.toString()).append("\n");
+            System.out.println("snacksInventory = " + snacksInventory);
         }
     }
 
