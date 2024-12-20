@@ -26,8 +26,8 @@ public class Snacks {
 
         for(Snack snack : snacks) {
             snacksInventory.append(snack.toString()).append("\n");
-            System.out.println("snacksInventory = " + snacksInventory);
         }
+        System.out.println(snacksInventory);
     }
 
 }
