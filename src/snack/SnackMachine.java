@@ -46,6 +46,9 @@ public class SnackMachine {
             switch (option) {
                 case 1 -> addProduct(read, products);
                 case 2 -> showTicket(products);
+                case 3 -> addSnack(read);
+                case 4 -> exit = true;
+                default -> System.out.println("An error was ocurred, invalid option");
             }
 
             return exit;
@@ -83,6 +86,17 @@ public class SnackMachine {
             System.out.println("Price: " + product.getPrice());
             System.out.println();
         }
+    }
+
+    static void addSnack (Scanner read) {
+        System.out.println("Enter the name");
+        String naem = read.nextLine();
+        System.out.println("Enter the price");
+        double price = Double.parseDouble(read.nextLine());
+        Snack newSnack = new Snack(naem, price);
+        Snacks.setSnack(newSnack);
+        System.out.println("Snack added correctly");
+        Snacks.showSnacks();
     }
 }
 
