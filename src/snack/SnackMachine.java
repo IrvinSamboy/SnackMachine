@@ -45,6 +45,7 @@ public class SnackMachine {
 
             switch (option) {
                 case 1 -> addProduct(read, products);
+                case 2 -> showTicket(products);
             }
 
             return exit;
@@ -61,6 +62,7 @@ public class SnackMachine {
                 if(snack.getIdSnack() == id) {
                     products.add(snack);
                     System.out.println("Product added correctly");
+                    System.out.println();
                     productFound = true;
                     break;
                 }
@@ -68,7 +70,19 @@ public class SnackMachine {
 
             if(!productFound) {
                 System.out.println("Product not found");
+                System.out.println();
             }
+    }
+
+    static void showTicket(List<Snack> products) {
+        System.out.println("--Purchase receipt--");
+        for (Snack product : products) {
+            System.out.println();
+            System.out.println("Product Id: " + product.getIdSnack());
+            System.out.println("Name: " + product.getName());
+            System.out.println("Price: " + product.getPrice());
+            System.out.println();
+        }
     }
 }
 
