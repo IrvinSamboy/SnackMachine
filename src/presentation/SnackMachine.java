@@ -1,4 +1,7 @@
-package snack;
+package presentation;
+
+import aplication.Snacks;
+import domain.Snack;
 
 import java.util.ArrayList;
 import java.util.List;
