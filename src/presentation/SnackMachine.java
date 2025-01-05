@@ -1,6 +1,6 @@
 package presentation;
 
-import aplication.Snacks;
+import aplication.ListSnackServices;
 import domain.Snack;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class SnackMachine {
         int option = 0;
         boolean exit = false;
         System.out.println("--SNACK MACHINE--");
-        Snacks.showSnacks();
+        ListSnackServices.showSnacks();
 
         while (!exit) {
             try{
@@ -60,11 +60,11 @@ public class SnackMachine {
     static void addProduct (Scanner read, List<Snack> products ) {
         System.out.println("Select product to buy");
 
-        Snacks.showSnacks();
+        ListSnackServices.showSnacks();
 
         int id = Integer.parseInt(read.nextLine());
             boolean productFound = false;
-            for(Snack snack : Snacks.getSnacks()) {
+            for(Snack snack : ListSnackServices.getSnacks()) {
                 if(snack.getIdSnack() == id) {
                     products.add(snack);
                     System.out.println("Product added correctly");
@@ -97,9 +97,9 @@ public class SnackMachine {
         System.out.println("Enter the price");
         double price = Double.parseDouble(read.nextLine());
         Snack newSnack = new Snack(naem, price);
-        Snacks.setSnack(newSnack);
+        ListSnackServices.setSnack(newSnack);
         System.out.println("Snack added correctly");
-        Snacks.showSnacks();
+        ListSnackServices.showSnacks();
     }
 }
 

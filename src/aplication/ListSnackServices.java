@@ -5,7 +5,7 @@ import domain.Snack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Snacks {
+public class ListSnackServices implements ISnacksServices {
     private static final List<Snack> snacks;
 
     static {
@@ -15,15 +15,15 @@ public class Snacks {
         snacks.add(new Snack("Chips", 50));
     }
 
-    public static void setSnack(Snack snack) {
-        Snacks.snacks.add(snack);
+    public void setSnack(Snack snack) {
+        ListSnackServices.snacks.add(snack);
     }
 
-    public static List<Snack> getSnacks() {
-        return Snacks.snacks;
+    public List<Snack> getSnacks() {
+        return ListSnackServices.snacks;
     }
 
-    public static void showSnacks() {
+    public void showSnacks() {
         StringBuilder snacksInventory = new StringBuilder();
 
         for(Snack snack : snacks) {
