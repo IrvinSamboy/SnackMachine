@@ -1,5 +1,6 @@
 package presentation;
 
+import aplication.ISnacksServices;
 import aplication.ListSnackServices;
 import domain.Snack;
 
@@ -14,16 +15,17 @@ public class SnackMachine {
 
     static void snackMachine() {
         Scanner read = new Scanner(System.in);
+        ISnacksServices snacksServices = new ListSnackServices();
         List<Snack> products = new ArrayList<>();
         int option = 0;
         boolean exit = false;
         System.out.println("--SNACK MACHINE--");
-        ListSnackServices.showSnacks();
+        snacksServices.showSnacks();
 
         while (!exit) {
             try{
                 option = showMenu(read);
-                exit = executeOptions(option, read, products);
+                exit = executeOptions(option, read, products, snacksServices);
             }
             catch (Exception e) {
                 System.out.println("An error was ocurred " + e.getMessage());
@@ -43,13 +45,13 @@ public class SnackMachine {
         return Integer.parseInt(read.nextLine());
     }
 
-    static boolean executeOptions (int option, Scanner read, List<Snack> products) {
+    static boolean executeOptions (int option, Scanner read, List<Snack> products, ISnacksServices snacksServices) {
             boolean exit = false;
 
             switch (option) {
-                case 1 -> addProduct(read, products);
+                case 1 -> addProduct(read, products, snacksServices);
                 case 2 -> showTicket(products);
-                case 3 -> addSnack(read);
+                case 3 -> addSnack(read, snacksServices);
                 case 4 -> exit = true;
                 default -> System.out.println("An error was ocurred, invalid option");
             }
@@ -57,14 +59,14 @@ public class SnackMachine {
             return exit;
     }
 
-    static void addProduct (Scanner read, List<Snack> products ) {
+    static void addProduct (Scanner read, List<Snack> products, ISnacksServices snacksServices ) {
         System.out.println("Select product to buy");
 
-        ListSnackServices.showSnacks();
+        snacksServices.showSnacks();
 
         int id = Integer.parseInt(read.nextLine());
             boolean productFound = false;
-            for(Snack snack : ListSnackServices.getSnacks()) {
+            for(Snack snack : snacksServices.getSnacks()) {
                 if(snack.getIdSnack() == id) {
                     products.add(snack);
                     System.out.println("Product added correctly");
@@ -91,15 +93,15 @@ public class SnackMachine {
         }
     }
 
-    static void addSnack (Scanner read) {
+    static void addSnack (Scanner read, ISnacksServices snacksServices) {
         System.out.println("Enter the name");
-        String naem = read.nextLine();
+        String name = read.nextLine();
         System.out.println("Enter the price");
         double price = Double.parseDouble(read.nextLine());
-        Snack newSnack = new Snack(naem, price);
-        ListSnackServices.setSnack(newSnack);
+        Snack newSnack = new Snack(name, price);
+        snacksServices.setSnack(newSnack);
         System.out.println("Snack added correctly");
-        ListSnackServices.showSnacks();
+        snacksServices.showSnacks();
     }
 }
 
