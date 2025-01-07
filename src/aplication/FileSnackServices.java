@@ -18,6 +18,32 @@ public class FileSnackServices implements  ISnacksServices{
     private final File file = new File(fileName);
     List<Snack> snacks = new ArrayList<>();
 
+    public FileSnackServices() {
+        boolean exits = false;
+
+        try {
+            exits = file.exists();
+            if(exits){
+                this.snacks = getSnacksFromFile();
+            }
+            else {
+                PrintWriter out = new PrintWriter(new FileWriter(file));
+                out.close();
+                initialSnacks();
+
+            }
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void initialSnacks() {
+        setSnack(new Snack("Soda", 50));
+        setSnack(new Snack("Sandwich", 120));
+        setSnack(new Snack("Chips", 50));
+    }
+
     @Override
     public void setSnack(Snack snack) {
         this.snacks.add(snack);
@@ -35,6 +61,7 @@ public class FileSnackServices implements  ISnacksServices{
             System.out.println(ex.getMessage());
         }
     }
+
 
     private List<Snack> getSnacksFromFile() {
         List<Snack> snacks = new ArrayList<>();
@@ -67,6 +94,6 @@ public class FileSnackServices implements  ISnacksServices{
 
     @Override
     public List<Snack> getSnacks() {
-        return List.of();
+        return this.snacks;
     }
 }
