@@ -56,7 +56,13 @@ public class FileSnackServices implements  ISnacksServices{
 
     @Override
     public void showSnacks() {
+        StringBuilder snacksInventory = new StringBuilder();
 
+        snacks.forEach((item) -> {
+            snacksInventory.append(item.toString()).append("\n");
+        });
+
+        System.out.println(snacksInventory);
     }
 
     @Override
