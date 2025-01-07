@@ -25,7 +25,7 @@ public class FileSnackServices implements  ISnacksServices{
         boolean append = false;
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(file));
-            writer.println(snack);
+            writer.println(snack.writeSnackToFile());
             writer.close();
         }
         catch (IOException ex){
