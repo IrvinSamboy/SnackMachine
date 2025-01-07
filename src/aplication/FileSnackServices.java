@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,24 @@ public class FileSnackServices implements  ISnacksServices{
             System.out.println(ex.getMessage());
         }
     }
+
+    private List<Snack> getSnacksFromFile() {
+        List<Snack> snacks = new ArrayList<>();
+
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(fileName));
+            lines.forEach((item) -> {
+                String[] itemSplited = item.split(",");
+                snacks.add(new Snack(itemSplited[1], Double.parseDouble(itemSplited[2])));
+            });
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return  snacks;
+    }
+
 
     @Override
     public void showSnacks() {

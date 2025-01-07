@@ -43,7 +43,7 @@ public class Snack implements Serializable {
         this.price = price;
     }
 
-    public String writeSnackToFile() { return idSnack + "," + "name" + name + "," + "price" + price; }
+    public String writeSnackToFile() { return idSnack + "," + name + "," + price; }
 
     @Override
     public String toString() {
