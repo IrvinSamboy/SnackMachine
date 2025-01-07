@@ -4,6 +4,7 @@ import domain.Snack;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class FileSnackServices implements  ISnacksServices{
 
     private final String fileName = "snacks.txt";
-    private File file = new File(fileName);
+    private final File file = new File(fileName);
     List<Snack> snacks = new ArrayList<>();
 
     @Override
@@ -22,9 +23,14 @@ public class FileSnackServices implements  ISnacksServices{
 
     private void addSnacksToFile(Snack snack) {
         boolean append = false;
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        writer.println(snack);
-        writer.close();
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(file));
+            writer.println(snack);
+            writer.close();
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
