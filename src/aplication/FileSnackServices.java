@@ -53,7 +53,7 @@ public class FileSnackServices implements  ISnacksServices{
     private void addSnacksToFile(Snack snack) {
         boolean append = false;
         try {
-            PrintWriter writer = new PrintWriter(new FileWriter(file));
+            PrintWriter writer = new PrintWriter(new FileWriter(file, append));
             writer.println(snack.writeSnackToFile());
             writer.close();
         }

@@ -1,5 +1,6 @@
 package presentation;
 
+import aplication.FileSnackServices;
 import aplication.ISnacksServices;
 import aplication.ListSnackServices;
 import domain.Snack;
@@ -15,7 +16,7 @@ public class SnackMachine {
 
     static void snackMachine() {
         Scanner read = new Scanner(System.in);
-        ISnacksServices snacksServices = new ListSnackServices();
+        ISnacksServices snacksServices = new FileSnackServices();
         List<Snack> products = new ArrayList<>();
         int option = 0;
         boolean exit = false;
